@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Favorites | GroMart</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="fav-page">
+
+<header class="header">
+  <a href="index.html" class="logo"><img src="assets/icons/logo.jpg" height="30" alt="GroMart Logo"></a>
+</header>
+
+<h2 class="page-title">My Favorites</h2>
+
+<div id="favContainer" class="fav-grid"></div>
+
+<script>
+
+function getCurrentUser() {
+  return JSON.parse(localStorage.getItem("currentUser"));
+}
+
+function getProductsDB() {
+  return JSON.parse(localStorage.getItem("products_db")) || [];
+}
+
+function loadFavorites() {
+
+  const user = getCurrentUser();
+  const box = document.getElementById("favContainer");
+
+  if (!user) {
+    box.innerHTML = "<p>Please login</p>";
+    return;
+  }
+
+  const fav = JSON.parse(localStorage.getItem(`fav_${user.userId}`)) || [];
+  const db = getProductsDB();
+
+  if (!fav.length) {
+    box.innerHTML = "<p>No favorites yet</p>";
+    return;
+  }
+
+  box.innerHTML = fav.map(name => {
+
+    const p = db.find(x => x.name === name);
+    if (!p) return "";
+
+    return `
+    <div class="fav-card">
+
+        <img src="${p.image}" class="fav-img">
+
+        <div class="fav-info">
+        <h4>${p.name}</h4>
+        <p class="fav-cat">${p.category}</p>
+        <p class="fav-price">₹${p.price}</p>
+        </div>
+
+        <div class="fav-actions">
+        <button class="fav-go" onclick="goToProduct('${p.name}')">Go To</button>
+        <button class="fav-remove" onclick="removeFav('${p.name}')">Remove</button>
+        </div>
+
+    </div>
+    `;
+
+  }).join("");
+}
+
+function removeFav(name) {
+  const user = getCurrentUser();
+  let fav = JSON.parse(localStorage.getItem(`fav_${user.userId}`)) || [];
+  fav = fav.filter(x => x !== name);
+  localStorage.setItem(`fav_${user.userId}`, JSON.stringify(fav));
+  loadFavorites();
+}
+
+function goToProduct(name) {
+  localStorage.setItem("highlightProduct", name);
+  window.location.href = "index.html";
+}
+
+loadFavorites();
+
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2026 Gro Mart</p>
+</footer>
+
+</body>
+</html>

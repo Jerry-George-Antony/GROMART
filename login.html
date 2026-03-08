@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GroMart | Login</title>
+
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+<a href="index.html" class="back-home">← Home</a>
+
+<div class="auth-container">
+  <div class="auth-card">
+
+    <h2>Gro<span>Mart</span></h2>
+    <p class="sub">Login or Create an Account</p>
+
+    <div class="tabs">
+      <button class="tab active" data-form="login">Login</button>
+      <button class="tab" data-form="signup">Sign Up</button>
+    </div>
+
+    <!-- LOGIN -->
+    <form id="loginForm" class="form active">
+      <div class="group">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <small>Invalid Email or Password</small>
+      </div>
+
+      <div class="group">
+      <div class="password-wrapper">
+      <input type="password" id="loginPassword" placeholder="Password">
+      <i class="fa fa-eye-slash toggle"></i>
+      </div>
+      <small>8–15 chars, upper, lower, number, symbol</small>
+      </div>
+
+      <div class="login-links">
+      <p class="forgot" onclick="openForgot()">Forgot Password?</p>
+      <p class="new-user"><a href="login.html?mode=signup">New User?</a>
+      </p>
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <!-- SIGNUP -->
+    <form id="signupForm" class="form">
+      <div class="group">
+        <input id="name" placeholder="Full Name" required>
+        <small>Only letters & single spaces (3–30 chars)</small>
+      </div>
+
+      <div class="group">
+        <input id="email" placeholder="Email" required>
+        <small>Valid email ending with .com only</small>
+      </div>
+
+      <div class="group">
+        <input id="phone" placeholder="Mobile Number" required>
+        <small>10 digits, starts with 6–9</small>
+      </div>
+
+      <div class="group">
+      <div class="password-wrapper">
+      <input type="password" id="password" placeholder="Password">
+      <i class="fa fa-eye-slash toggle"></i>
+      </div>
+      <small>8–15 chars, upper, lower, number, symbol</small>
+      </div>
+      
+      <div class="group">
+      <div class="password-wrapper">
+      <input type="password" id="confirmPassword" placeholder="Confirm Password">
+      <i class="fa fa-eye-slash toggle"></i>
+      </div>
+      <small>Passwords must match</small>
+      </div>
+
+      <button type="submit">Create Account</button>
+    </form>
+
+    <!-- FORGOT PASSWORD -->
+    <form id="forgotForm" class="form">
+      <h3>Reset Password</h3>
+      <div class="group">
+        <input type="email" id="forgotEmail" placeholder="Registered Email" required>
+      </div>
+      <div class="group">
+        <input type="text" id="forgotPhone" placeholder="Registered Phone Number" required>
+      </div>
+
+      <!-- Hidden until verified -->
+      <div id="resetFields" class="hidden">
+        <div class="group">
+          <input type="password" id="newPassword" placeholder="New Password">
+        </div>
+        <div class="group">
+          <input type="password" id="confirmNewPassword" placeholder="Confirm Password">
+        </div>
+        <button type="button" id="saveNewPass">Save Password</button>
+      </div>
+      <button type="button" id="verifyUser">Verify</button>
+    </form>
+    <div id="successBanner"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2026 Gro Mart</p>
+</footer>
+
+<script src="js/auth.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

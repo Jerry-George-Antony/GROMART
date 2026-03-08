@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GroMart Admin Panel</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header class="admin-header">
+    <a href="index.html" class="logo"><img src="assets/icons/logo.jpg" height="30" alt="GroMart Logo"></a>
+
+    <div class="admin-actions">
+      <button class="btn btn-light" id="goToShopBtn">
+        <i class="fa-solid fa-cart-shopping"></i> Go to Shop
+      </button>
+
+      <button class="btn btn-danger" id="adminLogoutBtn">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
+    
+    <div class="admin-stats">
+
+    <div class="stat-card">
+      <h3 id="totalUsers">0</h3>
+      <p>Total Users</p>
+    </div>
+
+    <div class="stat-card">
+      <h3 id="totalOrders">0</h3>
+      <p>Total Orders</p>
+    </div>
+
+    <div class="stat-card">
+      <h3 id="totalRevenue">₹0</h3>
+      <p>Total Revenue</p>
+    </div>
+
+  </div>
+
+    <!-- Add Product -->
+    <section class="card">
+      <h2><i class="fa-solid fa-plus"></i> Add New Product</h2>
+
+      <form id="addProductForm" class="form-grid">
+
+        <div class="form-group">
+          <label>Product Name</label>
+          <input type="text" id="pName" placeholder="Eg: Mango" required />
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <select id="pCategory" required>
+            <option value="">Select Category</option>
+            <option value="fruits">Fruits</option>
+            <option value="vegetables">Vegetables</option>
+            <option value="dairy">Dairy</option>
+            <option value="snacks">Snacks</option>
+            <option value="beverages">Beverages</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Price (₹)</label>
+          <input type="number" id="pPrice" min="1" placeholder="Eg: 50" required />
+        </div>
+
+        <div class="form-group">
+          <label>Quantity (Stock)</label>
+          <input type="number" id="pQty" min="0" placeholder="Eg: 20" required />
+        </div>
+
+        <div class="form-group">
+        <label>Unit</label>
+        <select id="pUnit">
+          <option value="item">Item</option>
+          <option value="kg">Kg</option>
+          <option value="litre">Litre</option>
+        </select>
+        </div>
+
+        <div class="form-group full">
+          <label>Image URL</label>
+          <input type="file" id="pImage" accept="image/*" required>
+        </div>
+
+        <div class="form-group full">
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-circle-plus"></i> Add Product
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Product List -->
+    <section class="card">
+      <div class="list-head">
+        <h2><i class="fa-solid fa-boxes-stacked"></i> Product Inventory</h2>
+
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchAdmin" placeholder="Search product..." />
+        </div>
+      </div>
+
+      <div id="productList" class="product-list"></div>
+    </section>
+
+    <!-- Orders List -->
+    <section class="card">
+    <div class="list-head">
+        <h2><i class="fa-solid fa-receipt"></i> Orders</h2>
+
+        <div class="admin-actions">
+        <button class="btn btn-light" id="refreshOrdersBtn">
+            <i class="fa-solid fa-rotate"></i> Refresh
+        </button>
+        <button class="btn btn-danger" id="clearOrdersBtn">
+            <i class="fa-solid fa-trash"></i> Clear All Orders
+        </button>
+        </div>
+    </div>
+
+    <div id="ordersList" class="orders-list"></div>
+    </section>
+
+    <!-- USERS SECTION -->
+    <section class="card">
+      <h2><i class="fa-solid fa-users"></i> Registered Users</h2>
+
+      <table class="users-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="usersTableBody"></tbody>
+      </table>
+    </section>
+
+  <!-- POPUP SECTION -->
+  <div id="userPopup" class="popup hidden">
+
+  <!-- VIEW MODE -->
+  <div id="viewMode">
+    <div id="userPopupContent"></div>
+
+    <div class="popup-actions">
+      <button id="editUserBtn">Edit</button>
+      <button id="deleteUserBtn" class="danger">Delete</button>
+      <button onclick="closeUserPopup()">Close</button>
+    </div>
+  </div>
+
+  <!-- EDIT MODE -->
+  <div id="editMode" class="hidden">
+
+    <h3>Edit User</h3>
+
+    <div class="edit-box">
+      <input id="editName" placeholder="Name">
+      <input id="editPhone" placeholder="Phone">
+      <input id="editEmail" placeholder="Email">
+    </div>
+
+    <div class="popup-actions">
+      <button id="saveEditUser">Save</button>
+      <button id="cancelEditUser">Cancel</button>
+    </div>
+
+  </div>
+
+</div>
+
+    <!-- Review -->
+    <section class="card">
+    <h2>Customer Reviews</h2>
+    <div id="reviewsList"></div>
+    </section>
+
+  </main>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

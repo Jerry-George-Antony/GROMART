@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gro Mart | Online Grocery Management</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+<!-- AUTH MODAL ROOT -->
+<div id="auth-modal" class="auth-modal hidden"></div>
+
+<!-- HEADER -->
+<header class="header">
+    <a href="index.html" class="logo"><img src="assets/icons/logo.jpg" height="30" alt="GroMart Logo"></a>
+    <input type="text" id="searchInput" class="search-bar" placeholder="Search groceries...">
+    <div id="auth-area" class="auth-area"></div>
+</header>
+
+<!-- CATEGORY NAV -->
+<nav class="category-nav">
+    <button onclick="scrollToCategory('fruits')">Fresh Fruits</button>
+    <button onclick="scrollToCategory('vegetables')">Fresh Vegetables</button>
+    <button onclick="scrollToCategory('dairy')">Dairy & Bakery</button>
+    <button onclick="scrollToCategory('snacks')">Snacks & Drinks</button>
+    <button onclick="scrollToCategory('fashion')">Fashion & Style</button>
+    <button onclick="scrollToCategory('home')">Home & Lifestyle</button>
+    <button onclick="scrollToCategory('cooking')">Cooking Essentials</button>
+    <button onclick="scrollToCategory('daily')">Everyday Essentials</button>
+</nav>
+
+<!-- BANNER -->
+<section class="banner">
+    <img src="assets/images/banner.jpg" alt="Gro Mart Banner" class="banner-img">
+    <div class="banner-text">Fresh • Fast • Affordable</div>
+</section>
+
+<!-- OFFERS -->
+<section class="offers">
+    <div class="offer-track">
+        <div class="offer-card">30% OFF Fruits</div>
+        <div class="offer-card">Buy 1 Get 1 Dairy</div>
+        <div class="offer-card">Snacks Mega Sale</div>
+        <div class="offer-card">Fashion Deals</div>
+        <div class="offer-card">Home Essentials</div>
+        <div class="offer-card">Cooking Combo</div>
+
+        <!-- Duplicate for infinite -->
+        <div class="offer-card">30% OFF Fruits</div>
+        <div class="offer-card">Buy 1 Get 1 Dairy</div>
+        <div class="offer-card">Snacks Mega Sale</div>
+        <div class="offer-card">Fashion Deals</div>
+        <div class="offer-card">Home Essentials</div>
+        <div class="offer-card">Cooking Combo</div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+    <h2 class="section-title">Our Features</h2>
+    <div class="features">
+        <div class="feature">🌱 Fresh & Organic</div>
+        <div class="feature">🚚 Free Delivery within 10km</div>
+        <div class="feature">💳 Easy Payment Options</div>
+        <div class="feature">🕒 Available 24×7</div>
+    </div>
+</section>
+
+<!-- CATEGORY TEMPLATE -->
+<section id="fruits" class="product-section alt">
+    <div class="section-inner">
+    <h2>Fresh Fruits</h2>
+    <div class="carousel" data-index="0">
+        <button class="arrow left" onclick="moveSlide('fruits', -1)">❮</button>
+        <div class="carousel-window">
+            <div class="carousel-track" id="fruits-track">
+                <div class="product-card"data-name="Apple"data-price="20"data-image="assets/images/apple.jpg"><img src="assets/images/apple.jpg" alt="Apple" class="product-img"><h4>Apple</h4><p>₹20 / item</p></div>
+                <div class="product-card"data-name="Banana"data-price="15"data-image="assets/images/banana.jpg"><img src="assets/images/banana.jpg" alt="Banana" class="product-img"><h4>Banana</h4><p>₹15 / item</p></div>
+                <div class="product-card"data-name="Orange"data-price="17"data-image="assets/images/orange.jpg"><img src="assets/images/orange.jpg" alt="Orange" class="product-img"><h4>Orange</h4><p>₹17 / item</p></div>
+                <div class="product-card"data-name="Pineapple"data-price="25"data-image="assets/images/pineapple.jpg"><img src="assets/images/pineapple.jpg" alt="Pineapple" class="product-img"><h4>Pineapple</h4><p>₹25 / item</p></div>
+                <div class="product-card"data-name="Strawberry"data-price="8"data-image="assets/images/strawberry.jpg"><img src="assets/images/strawberry.jpg" alt="Strawberry" class="product-img"><h4>Strawberry</h4><p>₹8 / item</p></div>
+                <div class="product-card"data-name="Grapes"data-price="23"data-image="assets/images/grapes.jpg"><img src="assets/images/grapes.jpg" alt="Grapes" class="product-img"><h4>Grapes</h4><p>₹23 / item</p></div>
+                <div class="product-card"data-name="Watermelon"data-price="25"data-image="assets/images/watermelon.jpg"><img src="assets/images/watermelon.jpg" alt="Watermelon" class="product-img"><h4>Watermelon</h4><p>₹25 / item</p></div>
+            </div>
+        </div>
+        <button class="arrow right" onclick="moveSlide('fruits', 1)">❯</button>
+    </div>
+    </div>
+</section>
+
+<section id="vegetables" class="product-section alt">
+    <div class="section-inner">
+    <h2>Fresh Vegetables</h2>
+    <div class="carousel" data-index="0">
+        <button class="arrow left" onclick="moveSlide('vegetables', -1)">❮</button>
+        <div class="carousel-window">
+            <div class="carousel-track" id="vegetables-track">
+                <div class="product-card"data-name="Tomato"data-price="7"data-image="assets/images/tomato.jpg"><img src="assets/images/tomato.jpg" alt="Tomato" class="product-img"><h4>Tomato</h4><p>₹7 / item</p></div>
+                <div class="product-card"data-name="Potato"data-price="9"data-image="assets/images/potato.jpg"><img src="assets/images/potato.jpg" alt="Potato" class="product-img"><h4>Potato</h4><p>₹9 / item</p></div>
+                <div class="product-card"data-name="Carrot"data-price="11"data-image="assets/images/carrot.jpg"><img src="assets/images/carrot.jpg" alt="Carrot" class="product-img"><h4>Carrot</h4><p>₹11 / item</p></div>
+                <div class="product-card"data-name="Onion"data-price="6"data-image="assets/images/onion.jpg"><img src="assets/images/onion.jpg" alt="Onion" class="product-img"><h4>Onion</h4><p>₹6 / item</p></div>
+                <div class="product-card"data-name="Beetroot"data-price="10"data-image="assets/images/beetroot.jpg"><img src="assets/images/beetroot.jpg" alt="Beetroot" class="product-img"><h4>Beetroot</h4><p>₹10 / item</p></div>
+                <div class="product-card"data-name="Pumpkin"data-price="25"data-image="assets/images/pumpkin.jpg"><img src="assets/images/pumpkin.jpg" alt="Pumpkin" class="product-img"><h4>Pumpkin</h4><p>₹25 / item</p></div>
+                <div class="product-card"data-name="Cabbage"data-price="20"data-image="assets/images/cabbage.jpg"><img src="assets/images/cabbage.jpg" alt="Cabbage" class="product-img"><h4>Cabbage</h4><p>₹20 / item</p></div>
+                <div class="product-card"data-name="Ginger"data-price="12"data-image="assets/images/ginger.jpg"><img src="assets/images/ginger.jpg" alt="Ginger" class="product-img"><h4>Ginger</h4><p>₹12 / item</p></div>
+            </div>
+        </div>
+        <button class="arrow right" onclick="moveSlide('vegetables', 1)">❯</button>
+    </div>
+    </div>
+</section>
+
+<section id="dairy" class="product-section alt">
+    <div class="section-inner">
+    <h2>Dairy & Bakery</h2>
+    <div class="carousel" data-index="0">
+        <button class="arrow left" onclick="moveSlide('dairy', -1)">❮</button>
+        <div class="carousel-window">
+            <div class="carousel-track" id="dairy-track">
+                <div class="product-card"data-name="Milk"data-price="25"data-image="assets/images/milk.jpg"><img src="assets/images/milk.jpg" alt="Milk" class="product-img"><h4>Milk</h4><p>₹25 / item</p></div>
+                <div class="product-card"data-name="Cheese"data-price="20"data-image="assets/images/cheese.jpg"><img src="assets/images/cheese.jpg" alt="Cheese" class="product-img"><h4>Cheese</h4><p>₹20 / item</p></div>
+                <div class="product-card"data-name="Egg"data-price="8"data-image="assets/images/eggs.jpg"><img src="assets/images/eggs.jpg" alt="Egg" class="product-img"><h4>Egg</h4><p>₹8 / item</p></div>
+                <div class="product-card"data-name="Meat"data-price="110"data-image="assets/images/meat.jpg"><img src="assets/images/meat.jpg" alt="Meat" class="product-img"><h4>Meat</h4><p>₹110 / kg</p></div>
+                <div class="product-card"data-name="Bread"data-price="45"data-image="assets/images/bread.jpg"><img src="assets/images/bread.jpg" alt="Bread" class="product-img"><h4>Bread</h4><p>₹45 / item</p></div>
+                <div class="product-card"data-name="Pastery"data-price="55"data-image="assets/images/pastery.jpg"><img src="assets/images/pastery.jpg" alt="Pastery" class="product-img"><h4>Pastery</h4><p>₹55 / item</p></div>
+            </div>
+        </div>
+        <button class="arrow right" onclick="moveSlide('dairy', 1)">❯</button>
+    </div>
+    </div>
+</section>
+
+<section id="snacks" class="product-section alt">
+    <div class="section-inner">
+    <h2>Snacks & Drinks</h2>
+    <div class="carousel" data-index="0">
+        <button class="arrow left" onclick="moveSlide('snacks', -1)">❮</button>
+        <div class="carousel-window">
+            <div class="carousel-track" id="snacks-track">
+                <div class="product-card"data-name="Cookies"data-price="10"data-image="assets/images/cookies.jpg"><img src="assets/images/cookies.jpg" alt="Cookies" class="product-img"><h4>Cookies</h4><p>₹10 / item</p></div>
+                <div class="product-card"data-name="Popcorn"data-price="40"data-image="assets/images/popcorn.jpg"><img src="assets/images/popcorn.jpg" alt="Popcorn" class="product-img"><h4>Popcorn</h4><p>₹40 / item</p></div>
+                <div class="product-card"data-name="Soda"data-price="12"data-image="assets/images/soda.jpg"><img src="assets/images/soda.jpg" alt="Soda" class="product-img"><h4>Soda</h4><p>₹12 / item</p></div>
+                <div class="product-card"data-name="Juice"data-price="30"data-image="assets/images/juice.jpg"><img src="assets/images/juice.jpg" alt="Juice" class="product-img"><h4>Juice</h4><p>₹30 / kg</p></div>
+                <div class="product-card"data-name="Chips"data-price="25"data-image="assets/images/chips.jpg"><img src="assets/images/chips.jpg" alt="Chips" class="product-img"><h4>Chips</h4><p>₹25 / item</p></div>
+                <div class="product-card"data-name="Biscuits"data-price="30"data-image="assets/images/biscuits.jpg"><img src="assets/images/biscuits.jpg" alt="Biscuits" class="product-img"><h4>Biscuits</h4><p>₹30 / item</p></div>
+            </div>
+        </div>
+        <button class="arrow right" onclick="moveSlide('snacks', 1)">❯</button>
+    </div>
+    </div>
+</section>
+
+<section id="fashion" class="product-section alt">
+    <div class="section-inner">
+    <h2>Fashion & Style</h2>
+    <div class="carousel" data-index="0">
+        <button class="arrow left" onclick="moveSlide('fashion', -1)">❮</button>
+        <div class="carousel-window">
+            <div class="carousel-track" id="fashion-track">
+                <div class="product-card"data-name="Shirts"data-price="250"data-image="assets/images/shirts.jpg"><img src="assets/images/shirts.jpg" alt="Shirts" class="product-img"><h4>Shirts</h4><p>₹250 / item</p></div>
+                <div class="product-card"data-name="Jeans"data-price="500"data-image="assets/images/jeans.jpg"><img src="assets/images/jeans.jpg" alt="Jeans" class="product-img"><h4>Jeans</h4><p>₹500 / item</p></div>
+                <div class="product-card"data-name="Shoes"data-price="650"data-image="assets/images/shoes.jpg"><img src="assets/images/shoes.jpg" alt="Shoes" class="product-img"><h4>Shoes</h4><p>₹650 / item</p></div>
+                <div class="product-card"data-name="Watch"data-price="450"data-image="assets/images/watch.jpg"><img src="assets/images/watch.jpg" alt="Watch" class="product-img"><h4>Watch</h4><p>₹450 / item</p></div>
+                <div class="product-card"data-name="Perfume"data-price="350"data-image="assets/images/perfume.jpg"><img src="assets/images/perfume.jpg" alt="Perfume" class="product-img"><h4>Perfume</h4><p>₹350 / item</p></div>
+                <div class="product-card"data-name="Tie"data-price="100"data-image="assets/images/ties.jpg"><img src="assets/images/ties.jpg" alt="Tie" class="product-img"><h4>Tie</h4><p>₹100 / item</p></div>
+            </div>
+        </div>
+        <button class="arrow right" onclick="moveSlide('fashion', 1)">❯</button>
+    </div>
+    </div>
+</section>
+
+<section id="home" class="product-section alt">
+    <div class="section-inner">
+    <h2>Home & Lifestyle</h2>
+    <div class="carousel" data-index="0">
+        <button class="arrow left" onclick="moveSlide('home', -1)">❮</button>
+        <div class="carousel-window">
+            <div class="carousel-track" id="home-track">
+                <div class="product-card"data-name="Carpet"data-price="150"data-image="assets/images/carpet.jpg"><img src="assets/images/carpet.jpg" alt="Carpet" class="product-img"><h4>Carpet</h4><p>₹150 / item</p></div>
+                <div class="product-card"data-name="Table"data-price="800"data-image="assets/images/table.jpg"><img src="assets/images/table.jpg" alt="Table" class="product-img"><h4>Table</h4><p>₹800 / item</p></div>
+                <div class="product-card"data-name="Bed"data-price="1500"data-image="assets/images/bed.jpg"><img src="assets/images/bed.jpg" alt="Bed" class="product-img"><h4>Bed</h4><p>₹1500 / item</p></div>
+                <div class="product-card"data-name="Chair"data-price="180"data-image="assets/images/chair.jpg"><img src="assets/images/chair.jpg" alt="Chair" class="product-img"><h4>Chair</h4><p>₹180 / kg</p></div>
+                <div class="product-card"data-name="Vase"data-price="250"data-image="assets/images/vase.jpg"><img src="assets/images/vase.jpg" alt="Vase" class="product-img"><h4>Vase</h4><p>₹250 / item</p></div>
+                <div class="product-card"data-name="Painting"data-price="450"data-image="assets/images/painting.jpg"><img src="assets/images/painting.jpg" alt="Painting" class="product-img"><h4>Painting</h4><p>₹450 / item</p></div>
+            </div>
+        </div>
+        <button class="arrow right" onclick="moveSlide('home', 1)">❯</button>
+    </div>
+    </div>
+</section>
+
+<section id="cooking" class="product-section alt">
+    <div class="section-inner">
+    <h2>Cooking Essentials</h2>
+    <div class="carousel" data-index="0">
+        <button class="arrow left" onclick="moveSlide('cooking', -1)">❮</button>
+        <div class="carousel-window">
+            <div class="carousel-track" id="cooking-track">
+                <div class="product-card"data-name="Rice"data-price="35"data-image="assets/images/rice.jpg"><img src="assets/images/rice.jpg" alt="Rice" class="product-img"><h4>Rice</h4><p>₹35 / kg</p></div>
+                <div class="product-card"data-name="Salt"data-price="15"data-image="assets/images/salt.jpg"><img src="assets/images/salt.jpg" alt="Salt" class="product-img"><h4>Salt</h4><p>₹15 / item</p></div>
+                <div class="product-card"data-name="Oil"data-price="40"data-image="assets/images/oil.jpg"><img src="assets/images/oil.jpg" alt="Oil" class="product-img"><h4>Oil</h4><p>₹40 / litre</p></div>
+                <div class="product-card"data-name="Pulses"data-price="50"data-image="assets/images/pulses.jpg"><img src="assets/images/pulses.jpg" alt="Pulses" class="product-img"><h4>Pulses</h4><p>₹50 / kg</p></div>
+                <div class="product-card"data-name="Chilly Powder"data-price="25"data-image="assets/images/chilly.jpg"><img src="assets/images/chilly.jpg" alt="Chilly Powder" class="product-img"><h4>Chilly Powder</h4><p>₹25 / item</p></div>
+                <div class="product-card"data-name="Masala"data-price="23"data-image="assets/images/masala.jpg"><img src="assets/images/masala.jpg" alt="Masala" class="product-img"><h4>Masala</h4><p>₹23 / item</p></div>
+            </div>
+        </div>
+        <button class="arrow right" onclick="moveSlide('cooking', 1)">❯</button>
+    </div>
+    </div>
+</section>
+
+<section id="daily" class="product-section alt">
+    <div class="section-inner">
+    <h2>Everyday Essentials</h2>
+    <div class="carousel" data-index="0">
+        <button class="arrow left" onclick="moveSlide('daily', -1)">❮</button>
+        <div class="carousel-window">
+            <div class="carousel-track" id="daily-track">
+                <div class="product-card"data-name="Soap"data-price="30"data-image="assets/images/soap.jpg"><img src="assets/images/soap.jpg" alt="Soap" class="product-img"><h4>Soap</h4><p>₹30 / item</p></div>
+                <div class="product-card"data-name="Toothpaste"data-price="28"data-image="assets/images/paste.jpg"><img src="assets/images/paste.jpg" alt="Toothpaste" class="product-img"><h4>Toothpaste</h4><p>₹28 / item</p></div>
+                <div class="product-card"data-name="Toothbrush"data-price="18"data-image="assets/images/brush.jpg"><img src="assets/images/brush.jpg" alt="Toothbrush" class="product-img"><h4>Toothbrush</h4><p>₹18 / item</p></div>
+                <div class="product-card"data-name="Shampoo"data-price="90"data-image="assets/images/shampoo.jpg"><img src="assets/images/shampoo.jpg" alt="Shampoo" class="product-img"><h4>Shampoo</h4><p>₹90 / item</p></div>
+                <div class="product-card"data-name="Facewash"data-price="95"data-image="assets/images/facewash.jpg"><img src="assets/images/facewash.jpg" alt="Facewash" class="product-img"><h4>Facewash</h4><p>₹95 / item</p></div>
+                <div class="product-card"data-name="Tissue"data-price="55"data-image="assets/images/tissue.jpg"><img src="assets/images/tissue.jpg" alt="Tissue" class="product-img"><h4>Tissue</h4><p>₹55 / item</p></div>
+            </div>
+        </div>
+        <button class="arrow right" onclick="moveSlide('daily', 1)">❯</button>
+    </div>
+    </div>
+</section>
+
+<footer class="footer">
+
+  <div class="footer-grid">
+
+    <!-- ABOUT -->
+    <div class="footer-box">
+      <h3>About GroMart</h3>
+      <p class="about-text">
+        GroMart delivers fresh groceries with speed and reliability.
+        Quality products, trusted service, and customer satisfaction first.
+        GroMart is a smart online grocery platform delivering fresh
+        vegetables, fruits, dairy and essentials at your doorstep.
+        Fast delivery, reliable service and quality products you can trust.
+      </p>
+    </div>
+
+    <!-- REVIEW -->
+    <div class="footer-box review-section">
+      <h3>Leave a Review</h3>
+
+      <div class="stars" id="starRating"></div>
+
+      <textarea id="reviewText" placeholder="Write your message..."></textarea>
+
+      <button id="submitReview">Submit</button>
+
+      <div id="reviewMsg"></div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p>📞 +91 98765 43210</p>
+      <p>📧 support@gromart.com</p>
+      <p>📍 Head Office: Kochi, India</p>
+      <p>📷 Instagram: @GroMart</p>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM CENTER -->
+  <div class="footer-bottom">
+
+    <div class="footer-rating">
+      ⭐⭐⭐⭐⭐ Rated by 10,000+ customers
+    </div>
+
+    <div class="copyright">
+      © 2026 GroMart. All rights reserved.
+    </div>
+
+  </div>
+
+</footer>
+
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/cart.js"></script>
+
+</body>
+</html>

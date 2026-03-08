@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout | GroMart</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="checkout-box">
+
+  <h2>Checkout</h2>
+
+  <div id="orderSummary"></div>
+
+  <h3>Delivery Info</h3>
+
+  <input id="street" placeholder="Street address">
+  <input id="city" placeholder="City">
+  <input id="district" placeholder="District">
+  <input id="state" placeholder="State">
+  <input id="postal" placeholder="Postal Code">
+
+  <h3>Payment</h3>
+
+  <label>
+    <input type="radio" name="pay" value="cod" checked>
+    Cash on Delivery
+  </label>
+
+  <label>
+    <input type="radio" name="pay" value="upi">
+    Online UPI
+  </label>
+
+  <button onclick="placeFinalOrder()">Place Order</button>
+
+</div>
+
+<!-- QR Popup -->
+<div id="qrPopup" class="popup hidden">
+  <img src="assets/icons/qr.jpg" height="200">
+  <p>Scan & pay using UPI</p>
+  <button onclick="confirmUPI()">I Paid</button>
+</div>
+
+<script>
+
+// ================= USER =================
+function getCurrentUser() {
+  return JSON.parse(localStorage.getItem("currentUser"));
+}
+
+const user = getCurrentUser();
+if (!user) location.href = "login.html";
+
+const cart = JSON.parse(localStorage.getItem("checkout_cart")) || [];
+
+if (!cart.length) {
+  document.body.innerHTML = "<h2>No checkout data</h2>";
+}
+
+// ================= PRODUCT DB =================
+const PRODUCTS_DB_KEY = "products_db";
+
+function getProductsDB() {
+  return JSON.parse(localStorage.getItem(PRODUCTS_DB_KEY)) || [];
+}
+
+function saveProductsDB(db) {
+  localStorage.setItem(PRODUCTS_DB_KEY, JSON.stringify(db));
+}
+
+// ================= SUMMARY =================
+let total = 0;
+const box = document.getElementById("orderSummary");
+
+box.innerHTML = cart.map(i => {
+  total += i.price * i.quantity;
+  return `
+    <div class="order-row">
+      <img src="${i.image}" height="40">
+      ${i.name} × ${i.quantity}
+      ₹${i.price * i.quantity}
+    </div>
+  `;
+}).join("") + `<strong>Total ₹${total}</strong>`;
+
+// ================= FINAL ORDER =================
+function placeFinalOrder() {
+
+  const street = streetEl.value.trim();
+  const city = cityEl.value.trim();
+  const district = districtEl.value.trim();
+  const state = stateEl.value.trim();
+  const postal = postalEl.value.trim();
+
+  if (!street || !city || !district || !state || !postal) {
+    alert("Fill all delivery fields");
+    return;
+  }
+
+  if (!/^\d{5,6}$/.test(postal)) {
+    alert("Invalid postal code");
+    return;
+  }
+
+  const pay = document.querySelector('input[name="pay"]:checked').value;
+
+  if (pay === "upi") {
+    document.getElementById("qrPopup").classList.remove("hidden");
+    return;
+  }
+
+  finalizeOrder(pay);
+}
+
+// ================= QR CONFIRM =================
+function confirmUPI() {
+  document.getElementById("qrPopup").classList.add("hidden");
+  finalizeOrder("upi");
+}
+
+// ================= FINALIZE =================
+function finalizeOrder(paymentMethod) {
+
+  let db = getProductsDB();
+
+  // stock update
+  for (let item of cart) {
+    const p = db.find(x => x.name === item.name);
+    if (!p || item.quantity > p.quantity) {
+      alert("Stock issue");
+      return;
+    }
+  }
+
+  cart.forEach(item => {
+    const p = db.find(x => x.name === item.name);
+    p.quantity -= item.quantity;
+  });
+
+  saveProductsDB(db);
+
+  // address
+  const address =
+    `${streetEl.value}, ${cityEl.value}, ${districtEl.value}, ${stateEl.value} - ${postalEl.value}`;
+
+  // create order
+  const order = {
+    id: "ORD-" + Date.now(),
+    date: Date.now(),
+    address,
+    payment: paymentMethod.toUpperCase(),
+    items: cart,
+    total
+  };
+
+  const orderKey = `orders_${user.userId}`;
+  const orders = JSON.parse(localStorage.getItem(orderKey)) || [];
+  orders.push(order);
+  localStorage.setItem(orderKey, JSON.stringify(orders));
+
+  // clear cart
+  localStorage.removeItem(`cart_${user.userId}`);
+  localStorage.removeItem("checkout_cart");
+
+  showSuccess();
+}
+
+// ================= SUCCESS =================
+function showSuccess() {
+
+  const overlay = document.createElement("div");
+  overlay.className = "success-popup";
+  overlay.innerText = "Order placed successfully!";
+  document.body.appendChild(overlay);
+
+  setTimeout(() => {
+    window.location.href = "orders.html";
+  }, 3000);
+}
+
+// shortcuts
+const streetEl = document.getElementById("street");
+const cityEl = document.getElementById("city");
+const districtEl = document.getElementById("district");
+const stateEl = document.getElementById("state");
+const postalEl = document.getElementById("postal");
+
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2026 Gro Mart</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GroMart | Cart</title>
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<header class="cart-header">
+    <a href="index.html" class="logo"><img src="assets/icons/logo.jpg" height="30" alt="GroMart Logo"></a>
+    <h2 class="cart-title">🛒 My Cart</h2>
+</header>
+
+<div class="cart-container">
+
+    <div id="cartItems" class="cart-items"></div>
+
+    <div class="cart-summary">
+    <h3>Order Summary</h3>
+
+    <p>Items: <span id="itemCount">0</span></p>
+    <p>Total: ₹<span id="totalAmount">0</span></p>
+
+    <button id="placeOrderBtn">Place Order</button>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2026 Gro Mart</p>
+</footer>
+
+<script src="js/auth.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

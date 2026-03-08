@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Orders | GroMart</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="orders-body">
+
+<header class="header">
+  <a href="index.html" class="logo"><img src="assets/icons/logo.jpg" height="30" alt="GroMart Logo"></a>
+</header>
+
+<h2 class="page-title">My Orders</h2>
+
+<div id="ordersContainer" class="orders-container"></div>
+
+<script>
+
+function getCurrentUser() {
+  return JSON.parse(localStorage.getItem("currentUser"));
+}
+
+function loadOrders() {
+
+  const user = getCurrentUser();
+  const container = document.getElementById("ordersContainer");
+
+  if (!user) {
+    container.innerHTML = "<p>Please login</p>";
+    return;
+  }
+
+  const orders =
+    JSON.parse(localStorage.getItem(`orders_${user.userId}`)) || [];
+
+  if (!orders.length) {
+    container.innerHTML = "<p>No orders yet</p>";
+    return;
+  }
+
+  container.innerHTML = orders.map(o => `
+    <div class="order-card">
+
+      <h4>Order ID: ${o.id}</h4>
+      <p><strong>Address:</strong> ${o.address || "Not provided"}</p>
+      <p><strong>Payment:</strong> ${o.payment || "COD"}</p>
+
+      ${o.items.map(i => `
+        <div class="order-row">
+          <img src="${i.image}" height="40">
+          ${i.name} × ${i.quantity}
+          ₹${i.price * i.quantity}
+        </div>
+      `).join("")}
+
+      <strong>Total ₹${o.total}</strong>
+
+    </div>
+  `).join("");
+}
+
+loadOrders();
+
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2026 Gro Mart</p>
+</footer>
+
+</body>
+</html>
