@@ -6,9 +6,8 @@ It allows users to browse products, add items to a cart, manage favorites, place
 The project demonstrates front-end development concepts such as DOM manipulation, state management using LocalStorage, UI design, and admin-user interaction.
 
 ---
-# Live Demo
-
-
+# Live Demo:
+https://jerry-george-antony.github.io/GROMART/
 
 ## 🚀 Features
 
